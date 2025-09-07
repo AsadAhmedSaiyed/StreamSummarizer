@@ -48,41 +48,6 @@ This project is focused on **RAG features**, moving beyond traditional frontend/
 
 ---
 
-## 🗂 Project Structure
-
-StreamSummarizer/
-├─ client/
-│  ├─ node_modules/
-│  ├─ public/
-│  ├─ src/
-│  │  ├─ assets/
-│  │  ├─ App.css
-│  │  ├─ App.jsx
-│  │  ├─ index.css
-│  │  └─ main.jsx
-│  ├─ .gitignore
-│  ├─ eslint.config.js
-│  ├─ index.html
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ README.md
-│  └─ vite.config.js
-├─ server/
-│  ├─ node_modules/
-│  ├─ .env
-│  ├─ .gitignore
-│  ├─ agent.js
-│  ├─ brightdata.js
-│  ├─ data.js
-│  ├─ embeddings.js
-│  ├─ index.js
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ qdrantClient.js
-│  └─ vectorStore.js
-
----
-
 ### Live Demo
 
 1. Frontend: https://stream-summarizer.vercel.app/
