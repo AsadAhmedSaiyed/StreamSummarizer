@@ -41,7 +41,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      //frontend url
+     
       const apiUrl = "https://streamsummarizer-1.onrender.com";
 
       const response = await fetch(`${apiUrl}/generate`, {
