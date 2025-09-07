@@ -42,8 +42,8 @@ function App() {
 
     try {
      
-      const apiUrl = "https://streamsummarizer-1.onrender.com";
-
+      //const apiUrl = "https://streamsummarizer-1.onrender.com";
+      const apiUrl = "http://localhost:3000";
       const response = await fetch(`${apiUrl}/generate`, {
         method: 'POST',
         headers: {

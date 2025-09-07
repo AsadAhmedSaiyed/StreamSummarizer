@@ -11,12 +11,14 @@ const app = express();
 app.use(express.json({limit : '200mb'}));
 app.use(
   cors({
-    origin: "https://stream-summarizer.vercel.app",
+    origin: ["http://localhost:5173","https://stream-summarizer.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+
 
 app.get("/", (req, res) => {
   res.send("Hello world");
