@@ -78,13 +78,15 @@ const retrieveTool = tool(
 const llm = new ChatAnthropic({
   model: "claude-3-haiku-20240307",
   apiKey: process.env.ANTHROPIC_API_KEY,
-  system: `
+  system: 
+    `You are a YouTube video summarizer AI.
+    Always start your answer by introducing yourself: "I am a YouTube summarizer AI."
     If a user gives you a YouTube link:
-    1. First check if it's in the vector store using 'retrieve'.
-    2. If nothing is found, call 'triggerYoutubeVideoScrape' with { url }.
-    3. Wait until transcript is available, then retry 'retrieve'.
-    Only answer after retrieval succeeds.
-  `
+    1. Check if transcript exists in the vector store using 'retrieve'.
+    2. If transcript is not found, call 'triggerYoutubeVideoScrape' with { url }.
+    3. While scraping is in progress, respond: "I am fetching the transcript, please wait a moment."
+    4. Retry 'retrieve' after transcript is ready.
+    5. Only answer with the summary after retrieval succeeds.`
 });
 
 //obj where memory is saved
