@@ -41,7 +41,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const apiUrl = "https://streamsummarizer-1.onrender.com";
 
       const response = await fetch(`${apiUrl}/generate`, {
         method: 'POST',
