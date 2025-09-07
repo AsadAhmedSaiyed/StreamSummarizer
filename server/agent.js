@@ -52,10 +52,6 @@ const retrieveTool = tool(
       //retrieve the most relevant chunks
       const retrievedDocs = await similaritySearch(query, 5, video_id);
 
-      if (!retrievedDocs || retrievedDocs.length === 0) {
-        return "I am fetching the transcript, please wait a moment.";
-      }
-
       //merging docs
       const serializeDocs = retrievedDocs
         .map((doc) => doc.content)
