@@ -11,6 +11,7 @@ import {
   initVectorStore,
 } from "./vectorStore.js";
 
+
 //init vector store once
 await initVectorStore();
 
@@ -67,10 +68,10 @@ const llm = new ChatAnthropic({
 //obj where memory is saved
 const checkpointer = new MemorySaver();
 
-//Re + Act Agent - ai agent
 export const agent = createReactAgent({
   llm,
   tools: [retrieveTool],
   checkpointer,
 });
+
 

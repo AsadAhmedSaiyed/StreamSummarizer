@@ -12,8 +12,8 @@ app.use(
   cors({
     origin: process.env.CLIENT_URL,
     credentials: true,
-    methods: ["GET", "POST", "OPTIONS"],         
-  allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -25,21 +25,13 @@ app.post("/generate", async (req, res) => {
   const { query, video_id, thread_id } = req.body;
   const result = await agent.invoke(
     {
-      messages: [
-        {
-          role: "user",
-          content: query,
-        },
-      ],
+      messages: [{ role: "user", content: query }],
     },
-    {
-      configurable: { thread_id, video_id },
-    }
+    { configurable: { thread_id, video_id } }
   );
 
-  console.log(result.messages.at(-1).content);
-
-  res.send(result.messages.at(-1).content);
+  console.log(result.messages.at(-1)?.content);
+  res.send(result.messages.at(-1)?.content);
 });
 
 app.listen(port, () => {
