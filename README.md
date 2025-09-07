@@ -1,79 +1,93 @@
 # 🚀 StreamSummarizer: RAG-powered YouTube Video Summarizer
 
-**StreamSummarizer** leverages **Retrieval-Augmented Generation (RAG)** to transform long YouTube videos into concise, context-rich summaries. This project is **RAG-focused**, moving beyond typical frontend/backend concerns.
+Sick of long YouTube videos? **StreamSummarizer** leverages **Retrieval-Augmented Generation (RAG)** to deliver concise, context-rich summaries—fast.  
+
+This project is focused on **RAG features**, moving beyond traditional frontend/backend concerns, demonstrating retrieval, local embeddings, and LLM reasoning in action.
 
 ---
 
-## 💡 Overview
+## 💡 How It Works
 
-Sick of sitting through long videos? StreamSummarizer enables:
+- Share a YouTube link.  
 
-- Automatic transcript retrieval and scraping
-- Local embedding of text chunks using **Xenova** on CPU
-- Context-aware summaries using **Anthropic (Claude-3) LLM**
-- Threaded conversations in a React chat interface
+- **Qdrant vector database** checks if the transcript exists.  
 
-It demonstrates a practical **RAG system**, combining **retrieval, local embeddings, and LLM reasoning**.
+- Transcript found → retrieve; if not → scrape automatically via **BrightData**.  
+
+- Text is split into chunks and **embedded locally using Xenova** (CPU-based embeddings).  
+
+- **Anthropic (Claude-3) LLM** generates a clear, context-aware summary from the retrieved chunks.  
 
 ---
 
 ## 🛠 Tech Stack
 
 - **Backend:** Express.js, Node.js  
-- **Vector Database:** Qdrant for semantic search and filtering  
-- **Embeddings:** Xenova transformer (CPU-based, local)  
-- **LLM:** Anthropic (Claude-3) for reasoning & summarization (does not parse URLs)  
-- **Frontend:** React chat interface with threaded conversations and real-time updates  
-- **Scraping:** BrightData for YouTube transcript scraping  
+
+- **Vector Database:** Qdrant for semantic search  
+
+- **Embeddings:** Xenova running **locally on CPU**  
+
+- **LLM:** Anthropic (Claude-3) for reasoning & summarization; does not parse URLs  
+
+- **Frontend:** React chat interface with threading & live updates  
 
 ---
 
 ## ✨ Key Features
 
-- **RAG system:** Retrieval + generation ensures accurate, context-rich summaries  
-- Threaded conversations maintain context across multiple queries  
-- Automatic transcript scraping and vectorization  
-- Local CPU-based embeddings—no external API needed  
-- Moving beyond MERN: focuses on **RAG features**, not traditional frontend/backend  
+- **RAG system:** Combines retrieval + generation for accurate, context-rich summaries  
 
----
+- Maintains context through threaded conversations  
 
-## 💻 How It Works
+- Automatic transcript scraping & vectorization  
 
-1. User provides a YouTube link.  
-2. **Qdrant vector database** checks if transcript exists.  
-3. Transcript exists → retrieve; otherwise → scrape via **BrightData**.  
-4. Transcript is split into meaningful chunks and embedded locally with **Xenova**.  
-5. **Anthropic (Claude-3) LLM** generates a concise, context-aware summary using retrieved chunks.
+- CPU-based embeddings—no external API needed  
 
----
-
-### Deployement link
-
-1. Frontend : https://stream-summarizer.vercel.app/
-2. Backend : https://streamsummarizer-1.onrender.com
+- Focused on **RAG capabilities**, moving beyond typical frontend/backend implementations  
 
 ---
 
 ## 🗂 Project Structure
 
-streamsummarizer/
-├─ backend/
-│ ├─ agent.js # Agent setup with LLM and tools
-│ ├─ vectorStore.js # Qdrant integration, embeddings, similarity search
-│ ├─ brightdata.js # YouTube scraping trigger
-│ ├─ server.js # Express server
-│ ├─ package.json
-│ └─ .env
-├─ frontend/
-│ ├─ src/
-│ │ ├─ App.jsx # Chat interface
-│ │ ├─ index.css
-│ │ └─ main.jsx
-│ ├─ package.json
-├─ data.js # Sample videos & transcripts for testing
-├─ README.md
-└─ .gitignore
+StreamSummarizer/
+├─ client/
+│  ├─ node_modules/
+│  ├─ public/
+│  ├─ src/
+│  │  ├─ assets/
+│  │  ├─ App.css
+│  │  ├─ App.jsx
+│  │  ├─ index.css
+│  │  └─ main.jsx
+│  ├─ .gitignore
+│  ├─ eslint.config.js
+│  ├─ index.html
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ README.md
+│  └─ vite.config.js
+├─ server/
+│  ├─ node_modules/
+│  ├─ .env
+│  ├─ .gitignore
+│  ├─ agent.js
+│  ├─ brightdata.js
+│  ├─ data.js
+│  ├─ embeddings.js
+│  ├─ index.js
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ qdrantClient.js
+│  └─ vectorStore.js
+
+---
+
+### Live Demo
+
+1. Frontend: https://stream-summarizer.vercel.app/
+
+2. Backend: https://streamsummarizer-1.onrender.com
 
 ---
 
@@ -82,39 +96,30 @@ streamsummarizer/
 ### Prerequisites
 
 - Node.js >= 18  
+
 - npm or yarn  
+
 - Qdrant account / API key  
+
 - BrightData account / API key  
+
 - Anthropic API key  
 
 ### Installation
 
-
+```bash
 # Clone the repository
 git clone https://github.com/yourusername/streamsummarizer.git
 cd streamsummarizer
 
-# Backend dependencies
+# Install backend dependencies
 cd backend
 npm install
 
-# Frontend dependencies
+# Install frontend dependencies
 cd ../frontend
 npm install
 
-### Environment Variables
-
-PORT=3000
-QDRANT_URL=<your-qdrant-url>
-QDRANT_API_KEY=<your-qdrant-api-key>
-BRIGHTDATA_API_KEY=<your-brightdata-api-key>
-ANTHROPIC_API_KEY=<your-anthropic-api-key>
-
-### Running project
-
-# Start backend
-cd backend
-npm run dev
 
 # Start frontend
 cd ../frontend
