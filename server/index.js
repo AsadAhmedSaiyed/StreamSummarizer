@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json({limit : '200mb'}));
 app.use(
   cors({
-    origin: ["http://localhost:5173","https://stream-summarizer.vercel.app"],
+    origin: ["https://stream-summarizer.vercel.app","http://localhost:5173"],
     credentials: true,
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
