@@ -25,12 +25,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/generate", async (req, res) => {
-  const { query, video_id, thread_id } = req.body;
+  const { query, thread_id } = req.body;
   const result = await agent.invoke(
     {
       messages: [{ role: "user", content: query }],
     },
-    { configurable: { thread_id, video_id } }
+    { configurable: { thread_id} }
   );
 
   console.log(result.messages.at(-1)?.content);
