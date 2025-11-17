@@ -9,6 +9,9 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json({limit : '200mb'}));
+// Allow preflight (OPTIONS) request
+app.options("*", cors());
+
 app.use(
   cors({
     origin: ["https://stream-summarizer.vercel.app","http://localhost:5173"],
